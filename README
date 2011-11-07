@@ -1,4 +1,6 @@
 Needs wildfire.dynamic_content
+Presumes your events url is /events/ (would suggest calling it events then renaming it afterwards if needed so you have the url correct)
+
 
 scope over rides only work in this way:
 
@@ -11,3 +13,7 @@ provides:
 extra fields to the wildfire dynamic content model to handle event data
 a calendar model to generate an array for a months calendar
 partial called __calendar to display a month along with logic for finding events that occur within that month (on a day or inbetween a range)
+ics view & layout
+
+this does not provide:
+layout / view to handle listing of events
