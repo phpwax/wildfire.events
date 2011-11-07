@@ -12,5 +12,13 @@ WaxEvent::add("wildfire_dynamic_content.setup", function(){
   $obj->define("event_featured_position", "IntegerField", array('group'=>'event', 'label'=>'Position'));
   
 });
+//hook in to the scope function to add filters based on the type
+WaxEvent::add("wildfire_dynamic_content.scope", function(){
+  $obj = WaxEvent::data();
+  $scope = $obj->asked_for_scope;
+    
+  if($scope == "event") $obj->scope_live()->filter("event_item",1)->filter("TIMESTAMPDIFF(SECOND, `event_date_start`, NOW()) <= 0")->filter("(`event_date_end` <= `date_start` OR (`event_date_end` >= `event_date_end` AND `event_date_end` >= NOW()) )")->order("event_date_start ASC");
+  else if($scope == "event_list") $obj->scope_live()->filter("event_item",1);
+});
 
 ?>
