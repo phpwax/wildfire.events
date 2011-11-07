@@ -1,1 +1,8 @@
 Needs wildfire.dynamic_content
+
+scope over rides only work in this way:
+
+$m = new Model;
+$m = $m->scope("scope_name");
+
+as the scope hooks are in the scope function.
