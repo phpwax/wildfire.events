@@ -6,3 +6,8 @@ $m = new Model;
 $m = $m->scope("scope_name");
 
 as the scope hooks are in the scope function.
+
+provides:
+extra fields to the wildfire dynamic content model to handle event data
+a calendar model to generate an array for a months calendar
+partial called __calendar to display a month along with logic for finding events that occur within that month (on a day or inbetween a range)
