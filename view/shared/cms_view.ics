@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+PRODID:-//suda.co.uk//X2V 0.8.2 (BETA)//EN
+X-ORIGINAL-URL:<?=$_SERVER['HTTP_HOST']?><?=$cms_content->permalink?>
+
+X-WR-CALNAME:<?=Config::get("events/calendar_name")?>
+VERSION:2.0
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:<?=$cms_content->permalink?>
+
+DESCRIPTION;LANGUAGE=en;CHARSET=UTF-8:<?=strip_tags($cms_content->title)?>
+
+LOCATION;LANGUAGE=en;CHARSET=UTF-8:<?=strip_tags($cms_content->event_postcode)?>
+
+SUMMARY;LANGUAGE=en;CHARSET=UTF-8:<?=strip_tags($cms_content->title)?>
+
+DTSTART:<?=date("Ymd", strtotime($cms_content->event_date_start))?>T<?=date("His",strtotime($cms_content->event_date_start))?>Z
+
+DTEND:<?=date("Ymd", strtotime($cms_content->event_date_end))?>T<?=date("His",strtotime($cms_content->event_date_end))?>Z
+
+DTSTAMP:<?=date("Ymd", strtotime($cms_content->date_start))?>T<?=date("His",strtotime($cms_content->date_start))?>Z
+
+END:VEVENT
+
+END:VCALENDAR
