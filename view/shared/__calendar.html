@@ -1,0 +1,51 @@
+<div class="calendar_block" id="calendar_block">
+<?
+if(!$cal_month = Request::get('month')) $cal_month = date("m");
+if(!$cal_year = Request::get('year')) $cal_year = date("Y");
+$cal_model = new Calendar($cal_month, $cal_year);
+$cal = $cal_model->generate_calendar();
+$start = $cal['first_date_on_calendar'];
+$omonth = $cal_month;
+$cal_month = $cal_month-1;
+$class = "previous";
+?>
+  <?=partial("__calendar_header", array('controller'=>$controller, 'omonth'=>$omonth, 'cal_year'=>$cal_year))?>
+  
+	<table class="calendar">
+		<?=partial("__calendar_table_header")?>
+		
+		<tr class="row">
+		<?for($count=0; $count<$cal['days_on_calendar']; $count++):?>
+		<?
+		
+		if($count == $cal['first_day_number']){$start=1;$class="current";$cal_month++;}
+		elseif(($start-1) == $cal['last_day_of_month'] && $class!="previous"){$start=1;$class="next";$cal_month++;}
+
+		$index = $cal_year."-".$cal_month."-".$start;
+		if(isset($months_events[$index])){$extra_class = " event ";}
+		elseif($index == date("Y-n-j")){$extra_class =" today ";}
+		else{$extra_class="";}
+		?>
+	
+		<td class="<?=$class?><?=$extra_class?> day_<?=$count?>">
+			<?if(isset($months_events[$index])):?>
+			<span class="day_number"><a href="/events/?year=<?=$cal_year?>&amp;month=<?=$cal_month?>&amp;day=<?=$start?>"><?=$start?></a></span>
+			<?else:?>
+			<span class="day_number"><?=$start?></span>
+			<?endif?>
+	
+		</td>
+
+		<?if(fmod($count+1,7)==0):?>
+		</tr><tr class="row">
+			<?$empty = true?>
+		<?else:?>
+			<?$empty = false;?>
+		<?endif?>
+		<?$start++?>
+		<?endfor?>
+		
+		</tr>
+	</table>
+	
+</div>
