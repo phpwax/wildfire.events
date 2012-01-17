@@ -1,8 +1,8 @@
 <?
 //find the content model class and set a define
 if(!defined("CONTENT_MODEL")){
-  $con = new AdminContentController(false, false);
-  define("CONTENT_MODEL", $con->model_class);
+  $con = new ApplicationController(false, false);
+  define("CONTENT_MODEL", $con->cms_content_class);
 }
 
 //add in the custom model setup for the competition
