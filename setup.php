@@ -1,7 +1,12 @@
 <?
+//find the content model class and set a define
+if(!defined("CONTENT_MODEL")){
+  $con = new AdminContentController(false, false);
+  define("CONTENT_MODEL", $con->model_class);
+}
 
 //add in the custom model setup for the competition
-WaxEvent::add("wildfire_dynamic_content.setup", function(){
+WaxEvent::add(CONTENT_MODEL.".setup", function(){
   $obj = WaxEvent::data();
   $obj->define("event_item", "BooleanField", array('group'=>'event', 'label'=>'Is an event'));
   $obj->define("event_date_start", "DateTimeField", array('group'=>'event', 'label'=>'Event start','output_format'=>"j F Y",'input_format'=>"j F Y H:i", 'default'=>date("Y-m-d") ));
@@ -13,7 +18,7 @@ WaxEvent::add("wildfire_dynamic_content.setup", function(){
   
 });
 //hook in to the scope function to add filters based on the type
-WaxEvent::add("wildfire_dynamic_content.scope", function(){
+WaxEvent::add(CONTENT_MODEL.".scope", function(){
   $obj = WaxEvent::data();
   $scope = $obj->asked_for_scope;
     
