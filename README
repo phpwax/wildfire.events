@@ -1,4 +1,3 @@
-Needs wildfire.dynamic_content
 Presumes your events url is /events/ (would suggest calling it events then renaming it afterwards if needed so you have the url correct)
 
 
