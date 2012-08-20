@@ -29,15 +29,8 @@ $class = "previous";
 		elseif($index == date("Y-n-j")){$extra_class =" today ";}
 		else{$extra_class="";}
 		?>
-	
-		<td class="<?=$class?><?=$extra_class?> day_<?=$count?>">
-			<?if(isset($months_events[$index])):?>
-			<span class="day_number"><a href="/events/?year=<?=$cal_year?>&amp;month=<?=$cal_month?>&amp;day=<?=$start?>"><?=$start?></a></span>
-			<?else:?>
-			<span class="day_number"><?=$start?></span>
-			<?endif?>
-	
-		</td>
+
+		<?=partial("__calendar_table_cell", array("class"=>$class,"extra_class"=>$extra_class,"count"=>$count,"start"=>$start,"months_events"=>$months_events,"cal_year"=>$cal_year,"cal_month"=>$cal_month))?>
 
 		<?if(fmod($count+1,7)==0):?>
 		</tr><tr class="row">
