@@ -26,8 +26,8 @@ $class = "previous";
 
 		$index = $cal_year."-".$cal_month."-".$start;
 		if(isset($months_events[$index])){$extra_class = " event ";}
-		elseif($index == date("Y-n-j")){$extra_class =" today ";}
 		else{$extra_class="";}
+		if($index == date("Y-n-j")){$extra_class .=" today ";}
 		?>
 
 		<?=partial("__calendar_table_cell", array("class"=>$class,"extra_class"=>$extra_class,"count"=>$count,"index"=>$index,"start"=>$start,"months_events"=>$months_events,"cal_year"=>$cal_year,"cal_month"=>$cal_month))?>
