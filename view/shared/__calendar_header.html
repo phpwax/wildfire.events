@@ -1,5 +1,5 @@
 <ul class="calendar_options horizontal_navigation clearfix">
 	<li class="previous"><a href="/<?=$controller?>/?month=<?=date("n", mktime(0,0,0,$omonth-1, 1, $cal_year))?>&amp;year=<?=date("Y", mktime(0,0,0,$omonth-1, 1, $cal_year))?>" class="highlight">&laquo;</a></li>
-	<li class="current"><a href="/<?=$controller?>/?month=<?=$omonth?>" class="highlight"><?=date("F Y", mktime(0,0,0,$omonth, 1, $cal_year))?></a></li>
+	<li class="current"><a href="/<?=$controller?>/?month=<?=$omonth?>&amp;year=<?=date("Y", mktime(0,0,0,$omonth, 1, $cal_year))?>" class="highlight"><?=date("F Y", mktime(0,0,0,$omonth, 1, $cal_year))?></a></li>
 	<li class="next"><a href="/<?=$controller?>/?month=<?=date("n", mktime(0,0,0,$omonth+1, 1, $cal_year))?>&amp;year=<?=date("Y", mktime(0,0,0,$omonth+1, 1, $cal_year))?>" class="highlight">&raquo;</a></li>
 </ul>
