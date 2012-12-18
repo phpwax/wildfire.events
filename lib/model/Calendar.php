@@ -26,7 +26,6 @@ class Calendar{
 
 	function generate_calendar(){
 		$table_array = array();
-    $this->current_month = 2;
    	//first day number for this month
 		$table_array['first'] = date("z", mktime(0,0,0, $this->current_month, 0, $this->current_year) );
 		//last day number of this month
