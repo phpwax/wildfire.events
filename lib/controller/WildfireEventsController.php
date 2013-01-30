@@ -14,9 +14,14 @@ class WildfireEventsController extends ApplicationController {
   }
 
   public function __calendar(){
-    if(!$cal_month = Request::get('month')) $cal_month = date("m");
-    elseif($cal_month < 10) $cal_month = "0".str_replace("0", "", $cal_month);
-    if(!$cal_year = Request::get('year')) $cal_year = date("Y");
+    if($this->month && $this->year){
+      $cal_year = $this->year;
+      $cal_month = $this->month;      
+    }else{
+      if(!$cal_month = Request::get('month')) $cal_month = date("m");
+      elseif($cal_month < 10) $cal_month = "0".str_replace("0", "", $cal_month);
+      if(!$cal_year = Request::get('year')) $cal_year = date("Y");
+    }
     $model = new $this->cms_content_class;
     $model = $model->scope($this->cms_list_scope);
     $cal = new Calendar();
