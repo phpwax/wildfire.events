@@ -1,0 +1,21 @@
+{
+    "name": "phpwax/wildfire.events",
+    "authors": [
+        {
+            "name": "OBB Dev",
+            "email": "dev@oneblackbear.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    },
+    "license": "MIT",
+    "autoload": {
+      "classmap": [
+        "lib/", "resources/"
+      ],
+      "files": ["ini.php"]
+    }
+
+}
