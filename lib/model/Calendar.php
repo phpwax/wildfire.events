@@ -27,11 +27,11 @@ class Calendar{
 	function generate_calendar(){
 		$table_array = array();
    	//first day number for this month
-		$table_array['first'] = date("z", mktime(1,0,0, $this->current_month, 1, $this->current_year) );
+		$table_array['first'] = date("z", mktime(0,0,0, $this->current_month, 1, $this->current_year) );
 		//last day number of this month
-
-
-		$table_array['last'] = date("z", mktime(1,0,0, $this->current_month+1, 1, $this->current_year) );
+		$table_array['last'] = date("z", mktime(0,0,0, $this->current_month+1, 1, $this->current_year) );
+    //special case for december as the silly php doesnt!
+    if($this->current_month == 12) $table_array['last'] = 365;
 		//number of days in this month
 		$table_array['days_in_current_month'] = $table_array['last'] - $table_array['first'];
 		//day of week number for the first of day of the month (sunday=0, sat=6)
