@@ -1,0 +1,3 @@
+<?
+class WeventsController extends WildfireEventsController{}
+?>
