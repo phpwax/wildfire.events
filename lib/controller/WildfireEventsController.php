@@ -23,16 +23,17 @@ class WildfireEventsController extends ApplicationController {
     $cal = new Calendar();
 
     if(($events = $cal->event_range_filter($model, $cal_year, $cal_month)->all()) && $events->count()){
-
       foreach($events as $event){
         $index = date("Y-n-j", strtotime($event->event_date_start));
         $this->months_events[$index][$event->primval] = $event;
         $start = date("Ymd", strtotime($event->event_date_start));
         $end = date("Ymd", strtotime($event->event_date_end));
         if($end > $start){
-          foreach(range($start, $end) as $i){
-            $ind = date("Y-n-j", strtotime($i));
+          $current = strtotime($start);
+          while($current<=strtotime($end)){
+            $ind = date("Y-n-j", $current);
             $this->months_events[$ind][$event->primval] = $event;
+            $current = strtotime("+ 1 day",$current);
           }
         }
       }
